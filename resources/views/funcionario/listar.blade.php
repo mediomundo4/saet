@@ -15,7 +15,7 @@
       <br/><br/>
       <h2>Listado - Funcionarios</h2><span style=""></span>
       
-      <div style="align-item:center; max-width:600px; display:table; min-width:250px">
+      <div style="align-items:center; max-width:600px; display:table; min-width:250px">
           <table id="funcionarios" class="table table-bordered table-striped" >
             <thead class="table-dark">
               <tr>

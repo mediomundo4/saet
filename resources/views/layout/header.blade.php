@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAET</title>
     <link rel="stylesheet" href="{{ asset('js/bootstrap-4.0.0/bootstrap.min.css') }}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{  asset('js/DataTables/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/DataTables/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/select2.min.css') }}">
     <script src="{{ asset('js/jquery-1.9.1.js') }}"></script>
     <script src="{{ asset('js/bootstrap-4.0.0/popper.min.js') }}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{{ asset('js/bootstrap-4.0.0/bootstrap.min.js') }}" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="{{ asset('js/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('js/fontawesome.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
 
 </head>
 <body>
@@ -28,9 +30,9 @@
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="nav fa-solid fa-bars"></span>
-  </button>
+    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" ">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex;  aling-items:right; justify-content:right">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="/principal"><i class="fa fa-home"></i> principal <span class="sr-only">(current)</span></a>
@@ -49,8 +51,8 @@
               <i class="fa-solid fa-clipboard-list"></i> Inventario De Equipos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><i class="fa fa-plus-circle"></i> Nuevo</a>
-            <a class="dropdown-item" href="#"><i class="fa fa-search"></i> Consultar</a>         
+            <a class="dropdown-item" href="/inventario"><i class="fa fa-plus-circle"></i> Nuevo</a>
+            <a class="dropdown-item" href="/inventario/listar"><i class="fa fa-search"></i> Consultar</a>         
           </div>
         </li>
         <li class="nav-item dropdown active">
@@ -107,26 +109,28 @@
         var clave = $("#clave").val();
         var claver = $("#repetir_clave").val();
         
-        if(clave === claver){
+        if(clave == claver){
           $.ajax({
             url: '/usuario/clave',
             method: 'post',
             data: FormData,
+            dataType: 'json',
           }).done(function(data){
-            var dataJson = JSON.parse(data);
-            console.log(dataJson);
-            // if(dataJson.estado == 'encontrado'){
-            //   swal('',dataJson.msj,'error');
-            //   $("#cedulafun").val('');
-            // }
+            //console.log(data);
+            if(data.estado == 'actualizado'){
+              swal('',data.msj,'success');
+              $("#clave").val();
+              $("#repetir_clave").val();
+              $("#cambiar_clave").modal('hide');
+            }
           });
 
           return false;
         }else{
-          $("#clave").val('');
           $("#repetir_clave").val('');
           swal('', 'Ambas claves deben ser exactamente igual.', 'error');
         }
+        return false;
       }); //fin ajax cmabio de clave
     }); //fin document.ready
 
@@ -228,22 +232,26 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Cambiar Clave</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
       </div>
       <div class="modal-body">
         <center>
           <form action="" method="post" id="frm_usuarios">
+            @csrf
             <div class="input-group">
               <span class="input-group-text fa-solid fa-user-lock" id="basic-addon1"></span>
-              <input type="text" name="clave" id="clave" class="form-control col" placeholder="Nueva Clave" required>
+              <input type="password" name="clave" id="clave" class="form-control col" placeholder="Nueva Clave" required>
+              <input type="hidden" name="usuario" id="usuario" value="{{ session('usuario') }}">              
+
             </div>
             <div class="input-group">
               <span class="input-group-text fa-solid fa-user-lock" id="basic-addon1"></span>
-              <input type="text" name="repetir_clave" id="repetir_clave" class="form-control col" placeholder="Reingrese Clave" required>
+              <input type="password" name="repetir_clave" id="repetir_clave" class="form-control col" placeholder="Reingrese Clave" required>
             </div><br>
             <div>
               <center>
                 <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>                    
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-times"></i> Cancelar</button>
               </center>
             </div>
             

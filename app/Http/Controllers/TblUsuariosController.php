@@ -142,7 +142,19 @@ class TblUsuariosController extends Controller
 
     public function update2(Request $request, tbl_usuarios $tbl_usuarios)
     {
-
+        //dd($request);
+        $user = $request->usuario;
+        $datos = DB::table('tbl_usuarios')
+        ->where('usuario', '=', $user)
+        ->first();
+        //dd($datos);
+        $id = $datos->id_usuario;
+        $usuario = tbl_usuarios::find($id);
+        $usuario->clave = $request->clave;
+        $usuario->save();
+        $retorna["estado"] = "actualizado";
+        $retorna["msj"] = "Clave Modificada.";
+        echo json_encode($retorna);
     }
     /**
      * Remove the specified resource from storage.

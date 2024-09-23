@@ -66,19 +66,19 @@
           </div><br>       
           <div class="input-group">
             <lavel class="col-sm-3">Cedula</lavel>
-            <input type="text" class="form-control col-sm-9" name="cedula" id="cedula" placeholder="Cedula">
+            <input type="text" class="form-control col-sm-9" name="cedula" id="cedula" placeholder="Cedula" required>
           </div>
           <div class="input-group">
             <lavel class="col-sm-3">Nombre</lavel>
-            <input type="text" class="form-control col-sm-9" name="nombre" id="nombre" placeholder="Nombre">
+            <input type="text" class="form-control col-sm-9" name="nombre" id="nombre" placeholder="Nombre" required>
           </div>
           <div class="input-group">
             <lavel class="col-sm-3">Apellido</lavel>
-            <input type="text" class="form-control col-sm-9" name="apellido" id="apellido" placeholder="Apellido">
+            <input type="text" class="form-control col-sm-9" name="apellido" id="apellido" placeholder="Apellido" required>
           </div>
           <div class="input-group">
             <label class="col-sm-3">Perfil</label>
-            <select name="id_perfil" id="id_perfil" class="col-sm-9 form-control">
+            <select name="id_perfil" id="id_perfil" class="col-sm-9 form-control" required>
               <option>Seleccione...</option>
               @foreach($perfiles as $perfil)
                 <option value="{{$perfil->id_perfil}}">{{$perfil->perfil}}</option>
@@ -87,11 +87,11 @@
           </div>
           <div class="input-group">
             <lavel class="col-sm-3">Usuario</lavel>
-            <input type="text" class="form-control col-sm-9" name="usuario" id="usuario" placeholder="Usuario">
+            <input type="text" class="form-control col-sm-9" name="usuario" id="usuario" placeholder="Usuario" required>
           </div>
           <div class="input-group">
             <lavel class="col-sm-3">Clave</lavel>
-            <input type="password" class="form-control col-sm-9" name="clave" id="clave" placeholder="Clave">
+            <input type="password" class="form-control col-sm-9" name="clave" id="clave" placeholder="Clave" required>
           </div>
           <div class="input-group">
             <lavel class="col-sm-3">Correo</lavel>

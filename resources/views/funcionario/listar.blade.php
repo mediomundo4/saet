@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('js/alertify.js/themes/alertify.core.css') }}">
     <link rel="stylesheet" href="{{ asset('js/alertify.js/themes/alertify.default.css') }}">
     <center>
-      <img src="{{ asset('img/image.jpeg') }}" alt="" width="130" height="80">
+      
       <br/><br/>
       <h2>Listado - Funcionarios</h2><span style=""></span>
       

@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\tbl_funcionarios;
+
+use App\Models\tbl_dependencias;
+use App\Models\tbl_departamentos;
+use App\Models\tbl_pisos;
+use App\Models\tbl_cargos;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +18,12 @@ class TblFuncionariosController extends Controller
      */
     public function index()
     {
-        //
+        
+        $dependencias = tbl_dependencias::all();
+        $departamentos = tbl_departamentos::all();
+        $pisos = tbl_pisos::all();
+        $cargos = tbl_cargos::all();
+        return view('funcionario.formulario', compact('dependencias','departamentos','pisos','cargos'));
     }
 
     /**
@@ -42,8 +51,16 @@ class TblFuncionariosController extends Controller
         $funcionarios->telefono = $request->get('telefono');
         $funcionarios->correo_personal = $request->get('correo_personal');
         $funcionarios->correo_inst = $request->get('correo_inst');
-
-        $funcionarios->save();
+        $funcionarios->id_region = $request->get('id_region');
+        $funcionarios->id_estado = $request->get('id_estado');
+        $funcionarios->id_municipio = $request->get('id_municipio');
+        $funcionarios->id_parroquia = $request->get('id_parroquia');
+        $funcionarios->id_dependencia = $request->get('id_dependencia');
+        $funcionarios->id_departamento = $request->get('id_departamento');
+        $funcionarios->id_piso = $request->get('id_piso');
+        $funcionarios->id_cargo = $request->get('id_cargo');
+        
+        $funcionarios->save(); 
         
         return back()->with('success', 'Funcionario insertado correctamente.');
     }

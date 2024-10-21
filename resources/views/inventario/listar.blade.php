@@ -39,10 +39,9 @@
                 align-items:center;
             }
         </style>
-        <img src="{{ asset('img/image.jpeg') }}" alt="" width="130" height="80">
-        <br/><br/>
+        
         <h2>Listado - Funcionarios</h2><span style=""></span>
-
+        <br>
         <div style="align-item:center; max-width:600px; display:table; min-width:250px">
         <table id="inventario" class="table table-bordered table-striped">
             <thead class="table-dark">

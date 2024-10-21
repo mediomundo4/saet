@@ -10,7 +10,13 @@
 
       @if (session('error'))
           <script>
-          swal("","{{session('success')}}","success");
+          swal("","{{session('error')}}","error");
+          </script>
+      @endif
+
+      @if (session('errorf'))
+          <script>
+          swal("","{{session('errorf')}}","error");
           </script>
       @endif
 
@@ -50,8 +56,8 @@
         }
       </script>
 
-      <img src="{{ asset('img/form.png') }}" alt="" width="135" height="95">
-      <h2>Registrar - Nuevo Usuarios</h2>      
+      
+      <h2>Registrar - Nuevo Usuario</h2>      
       <div style="width:600px">
         <form action="/usuario/create" method="post" enctype="multipart/form-data">
           @csrf
@@ -63,40 +69,65 @@
               </div>
             </a>              
             <input type="file" name="ruta_foto" id="ruta_foto" acept=".jpg" style="display:none;" onchange="javascript:obtener_arch();">              
-          </div><br>       
+          </div>
+          @error('ruta_foto')
+          <div class="text-danger">Debe Seleccionar una imagen</div>
+          @enderror
+          <br>       
           <div class="input-group">
             <lavel class="col-sm-3">Cedula</lavel>
-            <input type="text" class="form-control col-sm-9" name="cedula" id="cedula" placeholder="Cedula" required>
+            <input type="text" class="form-control col-sm-9" name="cedula" id="cedula" value="{{old('cedula')}}" placeholder="Cedula">
           </div>
+          @error('cedula')
+              <div class="text-danger">Debe Colocar una cedula</div>
+          @enderror
           <div class="input-group">
             <lavel class="col-sm-3">Nombre</lavel>
-            <input type="text" class="form-control col-sm-9" name="nombre" id="nombre" placeholder="Nombre" required>
+            <input type="text" class="form-control col-sm-9" name="nombre" id="nombre" value="{{old('nombre')}}" placeholder="Nombre">
           </div>
+          @error('nombre')
+              <div class="text-danger">Debe Colocar un nombre</div>
+          @enderror
           <div class="input-group">
             <lavel class="col-sm-3">Apellido</lavel>
-            <input type="text" class="form-control col-sm-9" name="apellido" id="apellido" placeholder="Apellido" required>
+            <input type="text" class="form-control col-sm-9" name="apellido" id="apellido" value="{{old('apellido')}}" placeholder="Apellido">
           </div>
+          @error('apellido')
+              <div class="text-danger">Debe Colocar un apellido</div>
+          @enderror
           <div class="input-group">
             <label class="col-sm-3">Perfil</label>
-            <select name="id_perfil" id="id_perfil" class="col-sm-9 form-control" required>
+            <select name="id_perfil" id="id_perfil" class="col-sm-9 form-control" >
               <option>Seleccione...</option>
               @foreach($perfiles as $perfil)
                 <option value="{{$perfil->id_perfil}}">{{$perfil->perfil}}</option>
               @endforeach
             </select>
           </div>
+          @error('id_perfil')
+              <div class="text-danger">Debe seleccionar un perfil </div>
+          @enderror
           <div class="input-group">
             <lavel class="col-sm-3">Usuario</lavel>
-            <input type="text" class="form-control col-sm-9" name="usuario" id="usuario" placeholder="Usuario" required>
+            <input type="text" class="form-control col-sm-9" name="usuario" id="usuario" value="{{old('usuario')}}" placeholder="Usuario" >
           </div>
+          @error('usuario')
+              <div class="text-danger">Debe Colocar un usuario</div>
+          @enderror
           <div class="input-group">
             <lavel class="col-sm-3">Clave</lavel>
-            <input type="password" class="form-control col-sm-9" name="clave" id="clave" placeholder="Clave" required>
+            <input type="password" class="form-control col-sm-9" name="clave" id="clave" value="{{old('clave')}}" placeholder="Clave" >
           </div>
+          @error('clave')
+              <div class="text-danger">Debe Colocar una clave</div>
+          @enderror
           <div class="input-group">
             <lavel class="col-sm-3">Correo</lavel>
-            <input type="email" class="form-control col-sm-9" name="correo" id="correo" placeholder="Correo">
-          </div><br>
+            <input type="email" class="form-control col-sm-9" name="correo" id="correo" value="{{old('correo')}}" placeholder="Correo" >
+          </div>
+          @error('correo')
+              <div class="text-danger">Debe Colocar un correo</div>
+          @enderror <br>
           <div>
             <center>
               <button type="submit" class="btn btn-success" style="width:250px; height:40px"><i class="fa fa-floppy-o">Guardar</i></button>                        
@@ -105,5 +136,5 @@
         </form>
       </div>
     </center>
-
+    no  quieres ser esa mujer ella se fue a un avismo 
 @endsection

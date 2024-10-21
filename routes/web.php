@@ -24,9 +24,7 @@ Route::get('/principal', function () {
     return view('principal/index');
 });
 
-Route::get('/funcionario', function () {
-    return view('funcionario.formulario');
-});
+
 
 Route::get('/probar', function () {
     return view('funcionario.prueba');
@@ -40,12 +38,14 @@ Route::get('/usuario', [App\Http\Controllers\TblUsuariosController::class, 'inde
 
 Route::controller(TblUsuariosController::class)->group(function(){
     Route::get('/usuario', 'index');
+    Route::get('/usuario/listar', 'edit');
     Route::post('/usuario/create', 'store');
     Route::post('/usuario/update', 'update');
     Route::post('/usuario/clave', 'update2');
 });
 
 Route::controller(TblFuncionariosController::class)->group(function(){
+    Route::get('/funcionario', 'index');
     Route::post('/funcionario/create', 'store');
     Route::get('/funcionario/listar', 'show');
     Route::get('/funcionario/edit', 'edit');
@@ -64,5 +64,5 @@ Route::controller(TblInventariosController::class)->group(function(){
     Route::get('/inventario/buscarmrca', 'buscar_marca');
     Route::post('/inventario/createcpu', 'storecpu');
     Route::post('/inventario/createhdidk', 'storehdisk');
-
+    Route::post('/inventario/createmodelo', 'storemodel');
 });

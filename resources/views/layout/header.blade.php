@@ -43,6 +43,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="funcionario">
             <a class="dropdown-item" href="/funcionario"><i class="fa fa-plus-circle"></i> Nuevo</a>
+            <!-- <a class="dropdown-item" href="/funcionario"><i class="fa fa-plus-circle"></i> Nuevo</a> -->
             <a class="dropdown-item" href="/funcionario/listar"><i  class="fa fa-list"></i> Listado</a>         
         </div>
         </li>
@@ -65,8 +66,14 @@
           </div>
         </li>
         @if(session('perfil')== 1)
-          <li class="nav-item active">
-            <a class="nav-link disabled" href="/usuario"><i class="fa-solid fa-user-gear"></i> Usuario</a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="asignacion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-user-gear"></i> Usuario
+            </a>
+            <div class="dropdown-menu" aria-labelledby="asignacion">
+              <a class="dropdown-item" href="/usuario"><i class="fa fa-plus-circle"></i> Nuevo</a>
+              <a class="dropdown-item" href="/usuario/listar"><i class="fa fa-search"></i> Consultar</a>         
+            </div>
           </li>
         @endif       
         <li class="nav-item dropdown active">
@@ -76,7 +83,7 @@
             @else
               <?php 
                 $ruta = session('foto');
-                echo "<img src='archivos/usuarios/".$ruta."' style='width:35px; height:35px; border-radius:150px'>";
+                echo "<img src='../../archivos/usuarios/".$ruta."' style='width:35px; height:35px; border-radius:150px'>";
               ?>
               {{ session('nombre_completo') }}
             @endif

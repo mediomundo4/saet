@@ -43,14 +43,59 @@ class TblInventariosController extends Controller
     {
         //dd($request);
         $inventario = new tbl_inventarios();
-        $inventario->id_modelo = $request->id_modelo;
-        $inventario->id_procesador  = $request->id_procesador;
-        $inventario->memoria = $request->memoria;
-        $inventario->id_unidad_disco  = $request->id_unidad_disco;
-        $inventario->id_sistema_operativo  = $request->id_sistema_operativo;
-        $inventario->fecha_invequipo = $request->fecha_invequipo;
-        $inventario->nserial = $request->nserial;
-        $inventario->bien_nacional = $request->bien_nacional;
+        //dd($request->fecha_invequipo);
+        $id_tipo = $request->id_tipo_equipo;
+        if($id_tipo == 1 and $id_tipo == 2 and $id_tipo == 12){
+            $request->validate([
+                'id_tipo_equipo' => 'required',
+                'id_marca' => 'required',
+                'id_modelo' => 'required',
+                'id_procesador' => 'required',
+                'memoria' => 'required',
+                'id_unidad_disco' => 'required',
+                'id_sistema_operativo' => 'required',
+                'fecha_invequipo' => 'required',
+                'nserial' => 'required',
+                'bien_nacional' => 'required',
+                'stock_invequipo' => 'required',
+                'mac_invequipo' => 'required',
+                'ip_invequipo' => 'required'  
+            ]);
+
+            $inventario->id_modelo = $request->id_modelo;
+            $inventario->id_procesador  = $request->id_procesador;
+            $inventario->memoria = $request->memoria;
+            $inventario->id_unidad_disco  = $request->id_unidad_disco;
+            $inventario->id_sistema_operativo  = $request->id_sistema_operativo;
+            $inventario->fecha_invequipo = $request->fecha_invequipo;
+            $inventario->nserial = $request->nserial;
+            $inventario->bien_nacional = $request->bien_nacional;
+            $inventario->stock_invequipo = $request->stock_invequipo;
+            $inventario->mac_invequipo = $request->mac_invequipo;
+            $inventario->ip_invequipo = $request->ip_invequipo;
+        }else{
+            $request->validate([
+                'id_tipo_equipo' => 'required',
+                'id_marca' => 'required',
+                'id_modelo' => 'required',                
+                'fecha_invequipo' => 'required',
+                'nserial' => 'required',
+                'bien_nacional' => 'required',
+                'stock_invequipo' => 'required',
+                'mac_invequipo' => 'required',
+                'ip_invequipo' => 'required'  
+            ]); 
+
+            $inventario->id_modelo = $request->id_modelo;
+            $inventario->fecha_invequipo = $request->fecha_invequipo;
+            $inventario->nserial = $request->nserial;
+            $inventario->bien_nacional = $request->bien_nacional;
+            $inventario->stock_invequipo = $request->stock_invequipo;
+            $inventario->mac_invequipo = $request->mac_invequipo;
+            $inventario->ip_invequipo = $request->ip_invequipo;
+        }
+        
+        
         $inventario->save();
         $id = $inventario->id_invequipo;
         if($id == null){
@@ -98,6 +143,27 @@ class TblInventariosController extends Controller
         }
         echo json_encode($retorna);
     }
+
+    public function storemodel(Request $request){
+        //dd($request);
+        $modelo = new tbl_modelos();
+        $mdlo = $request->modelo;
+        $modelo->id_tipo_equipo = $request->idtipoequipo;
+        $modelo->id_marca = $request->idmarca;
+        $modelo->modelo = $mdlo;
+        $modelo->save();
+        $id = $modelo->id_modelo;
+        if($id == null){
+            $retorna['estado'] = 'no insertado';
+            $retorna['msj'] = 'Error. No se pudo registrar el modelo.';            
+        }else{
+            $retorna['estado'] = 'insertado';
+            $retorna['msj'] = 'Unidad de Disco registrado correctamente.';
+            $retorna['id'] = $id;
+            $retorna['modelo'] = $mdlo;
+        }
+        echo json_encode($retorna);
+    }
     /**
      * Display the specified resource.
      */ 
@@ -112,9 +178,9 @@ class TblInventariosController extends Controller
     public function edit(tbl_inventarios $tbl_inventarios, Request $request)
     {
         $inventarios = DB::table('tbl_inventarios_equipos')
-        ->join('tbl_procesadores', 'tbl_inventarios_equipos.id_procesador', 'tbl_procesadores.id_procesador')
-        ->join('tbl_unidades_discos', 'tbl_inventarios_equipos.id_unidad_disco', 'tbl_unidades_discos.id_unidad_disco')
-        ->join('tbl_sistemas_operativos', 'tbl_inventarios_equipos.id_sistema_operativo', 'tbl_sistemas_operativos.id_sistema_operativo')
+        ->leftjoin('tbl_procesadores', 'tbl_inventarios_equipos.id_procesador', 'tbl_procesadores.id_procesador')
+        ->leftjoin('tbl_unidades_discos', 'tbl_inventarios_equipos.id_unidad_disco', 'tbl_unidades_discos.id_unidad_disco')
+        ->leftjoin('tbl_sistemas_operativos', 'tbl_inventarios_equipos.id_sistema_operativo', 'tbl_sistemas_operativos.id_sistema_operativo')
         ->join('tbl_modelos', 'tbl_inventarios_equipos.id_modelo', 'tbl_modelos.id_modelo')
         ->join('tbl_marcas', 'tbl_modelos.id_marca', 'tbl_marcas.id_marca')
         ->join('tbl_tipos_equipos', 'tbl_modelos.id_tipo_equipo', 'tbl_tipos_equipos.id_tipo_equipo')

@@ -38,7 +38,17 @@ class TblUsuariosController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        $usuarios = new tbl_usuarios();
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'cedula' => 'required',
+            'usuario' => 'required',
+            'clave' => 'required',
+            'correo' => 'required',
+            'id_perfil' => 'required',
+            'ruta_foto' => 'required',
+        ]);
+        $usuarios = new tbl_usuarios();        
         $usuarios->nombre = $request->get('nombre');
         $usuarios->apellido = $request->get('apellido');
         
@@ -58,12 +68,9 @@ class TblUsuariosController extends Controller
 
         $usuarios->id_perfil = $request->get('id_perfil');
         $usuarios->save();
-        $id_usuario = $usuarios->id_usuario;
-        if($id_usuario !== ""){
-            return back()->with('success', 'Usuario registrado correctamente.');
-        }else{
-            return back()->with('error', 'El Usuario no ha podido ser registrado.');
-        }
+        return back()->with('success', 'Usuario registrado correctamente.');
+            
+        
     }
 
     /**
@@ -105,7 +112,10 @@ class TblUsuariosController extends Controller
      */
     public function edit(tbl_usuarios $tbl_usuarios)
     {
-        //
+        $usuarios = DB::table('tbl_usuarios')
+        ->join('tbl_perfiles', 'tbl_usuarios.id_perfil', 'tbl_perfiles.id_perfil')
+        ->get();
+        return view('usuario.listar', compact('usuarios'));
     }
 
     /**

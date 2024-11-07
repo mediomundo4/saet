@@ -10,6 +10,6 @@ class tbl_dependencias extends Model
     use HasFactory;
     protected $table = 'tbl_dependencias';
     protected $primaryKey = 'id_dependencia';
-    protected $fillable = ['dependencia'];
+    protected $fillable = ['dependencia', 'id_piso'];
     public $timestamps = false;
 }

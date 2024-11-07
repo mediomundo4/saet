@@ -14,6 +14,7 @@
     <script src="{{ asset('js/fontawesome.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/validCampoFranz.js') }}"></script>
 
 </head>
 <body>
@@ -61,7 +62,7 @@
               <i class="fa fa-desktop"></i> Asignacion
           </a>
           <div class="dropdown-menu" aria-labelledby="asignacion">
-            <a class="dropdown-item" href="#"><i class="fa fa-plus-circle"></i> Nuevo</a>
+            <a class="dropdown-item" href="/asignacion"><i class="fa fa-plus-circle"></i> Nueva</a>
             <a class="dropdown-item" href="#"><i class="fa fa-search"></i> Consultar</a>         
           </div>
         </li>
@@ -109,6 +110,11 @@
     
     $(document).ready(function(){
       $("#foto").hide();
+
+      //Para escribir solo letras
+      $('.letras').validCampoFranz(' abcdefghijklmnñopqrstuvwxyzáéíóú');
+      //Para escribir solo numeros    
+      $('.numeros').validCampoFranz('0123456789');
       
       //inicio ajax cambio de clave
       $("#frm_usuarios").submit(function(){

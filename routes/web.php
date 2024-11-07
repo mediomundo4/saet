@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TblUsuariosController;
 use App\Http\Controllers\TblFuncionariosController;
 use App\Http\Controllers\TblInventariosController;
+use App\Http\Controllers\TblAsignacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,10 @@ Route::controller(TblUsuariosController::class)->group(function(){
 Route::controller(TblFuncionariosController::class)->group(function(){
     Route::get('/funcionario', 'index');
     Route::post('/funcionario/create', 'store');
+    Route::post('/funcionario/newdpto', 'storedpto');
+    Route::get('/funcionario/buscarpiso', 'buscar_piso');
+    Route::get('/funcionario/buscardpdnc', 'buscar_dependencia');
+    Route::post('/funcionario/newddpdnc', 'storedpdnc');
     Route::get('/funcionario/listar', 'show');
     Route::get('/funcionario/edit', 'edit');
     Route::get('/funcionario/update', 'update');
@@ -65,4 +70,9 @@ Route::controller(TblInventariosController::class)->group(function(){
     Route::post('/inventario/createcpu', 'storecpu');
     Route::post('/inventario/createhdidk', 'storehdisk');
     Route::post('/inventario/createmodelo', 'storemodel');
+});
+
+Route::controller(TblAsignacionesController::class)->group(function(){
+    Route::get('/asignacion', 'index');
+    Route::get('/asignacion/buscarfun', 'buscarfun');
 });

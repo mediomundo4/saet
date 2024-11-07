@@ -20,11 +20,13 @@
             <thead class="table-dark">
               <tr>
                 <th>Cedula</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Nombre / Apellido</th>
                 <th>Telefono</th>
                 <th>Correo Personal</th>
                 <th>Correo Institucional</th>
+                <th>Piso</th>
+                <th>Departamento</th>
+                <th>Dependencia</th>
                 <th>Accion</th>
               </tr>
             </thead>
@@ -33,19 +35,21 @@
               @foreach($funcionarios as $funcionario)
                 @if($funcionario == '')
                   <tr>
-                    <td colspan="8">No Hay se encontro ningun funcionario.</td>
+                    <td colspan="8">No se encontro ningun funcionario.</td>
                   </tr>
                 @else
                   <tr>
-                    <td style="text-aling:center; color:#000">{{ $funcionario->cedulafun }}</td>
-                    <td style="text-aling:center; color:#000">{{ $funcionario->nombrefun }}</td>
-                    <td style="text-aling:center; color:#000">{{ $funcionario->apellidofun }}</td>
-                    <td style="text-aling:center; color:#000">{{ $funcionario->telefono }}</td>
-                    <td style="text-aling:center; color:#000">{{ $funcionario->correo_personal }}</td>
-                    <td style="text-aling:center; color:#000">{{ $funcionario->correo_inst }}</td>
-                    <td style="text-aling:center; color:#000">                    
+                    <td style="text-align:center; color:#000">{{ $funcionario->cedulafun }}</td>
+                    <td style="text-align:center; color:#000">{{ $funcionario->nombrefun }}<br>{{ $funcionario->apellidofun }}</td>
+                    <td style="text-align:center; color:#000">{{ $funcionario->telefono }}</td>
+                    <td style="text-align:center; color:#000">{{ $funcionario->correo_personal }}</td>
+                    <td style="text-align:center; color:#000">{{ $funcionario->correo_inst }}</td>
+                    <td style="text-align:center; color:#000">{{ $funcionario->piso }}</td>  
+                    <td style="text-align:center; color:#000">{{ $funcionario->dependencia }}</td>
+                    <td style="text-align:center; color:#000">{{ $funcionario->departamento }}</td>
+                    <td style="text-align:center; color:#000">                    
                       <span class="btn btn-success fa fa-refresh" onclick="actualizar({{ $funcionario->id_funcionario }})"></span>
-                      <span class="btn btn-danger fa fa-trash" onclick="eliminar({{ $funcionario->id_funcionario }})"></span>
+                      <!--  <span class="btn btn-danger fa fa-trash" onclick="eliminar({{ $funcionario->id_funcionario }})"></span> -->
                     </td>
                   </tr>
                 @endif

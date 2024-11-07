@@ -42,12 +42,11 @@
         
         <h2>Listado - Funcionarios</h2><span style=""></span>
         <br>
-        <div style="align-item:center; max-width:600px; display:table; min-width:250px">
+        <div style="align-item:center; max-width:600px; display:table;">
         <table id="inventario" class="table table-bordered table-striped">
-            <thead class="table-dark">
+            <thead class="table-dark" style="max-width:600px">
                 <th>Tipo de equipo</th>
-                <th>Marca</th>
-                <th>Modelo</th>
+                <th>Marca y Modelo</th>
                 <th>Procesador</th>
                 <th>Memoria Ram</th>
                 <th>Disco Duro</th>
@@ -55,14 +54,19 @@
                 <th>Fecha Inventario</th>
                 <th>N serial.</th>
                 <th>Bien Nacional</th>
+                <th>MAC</th>
+                <th>IP</th>
                 <th>Accion</th>
             </thead>
             <tboddy>
                 @foreach($inventarios as $inventario)
                     <tr>
-                        <td style="text-align:center">{{ $inventario->tipo_equipo }}</td>
-                        <td style="text-align:center">{{ $inventario->marca }}</td>
-                        <td style="text-align:center">{{ $inventario->modelo }}</td>
+                        <td style="text-align:center">
+                            {{ $inventario->tipo_equipo }}
+                        </td>
+                        <td style="text-align:center">
+                            {{ $inventario->modelo }}
+                        </td>
                         <td style="text-align:center">{{ $inventario->procesador }}</td>
                         <td style="text-align:center">{{ $inventario->memoria }}</td>
                         <td style="text-align:center">{{ $inventario->unidad_disco }}</td>
@@ -70,6 +74,8 @@
                         <td style="text-align:center">{{ $inventario->fecha_invequipo }}</td>
                         <td style="text-align:center">{{ $inventario->nserial }}</td>
                         <td style="text-align:center">{{ $inventario->bien_nacional }}</td>
+                        <td style="text-align:center">{{ $inventario->mac_invequipo }}</td>
+                        <td style="text-align:center">{{ $inventario->ip_invequipo }}</td>
                         <td style="align-items:center">
                             <span class="btn btn-success"><i class="fa-solid fa-refresh"></i></span>
                         </td>

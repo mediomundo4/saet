@@ -10,6 +10,13 @@
                 placeholder: "Seleccione..."                  
             });           
 
+            //Para escribir solo numeros MAC   
+            $('.nmac').validCampoFranz('0123456789:');
+            //Para escribir solo numeros IP
+            $('.nip').validCampoFranz('0123456789.');
+            //Para escribir solo numeros BIEN NACIONAL
+            $('.nbn').validCampoFranz('0123456789-');
+
             $("#id_tipo_equipo").change(function(){                
                 var tipo = $(this).val();
                 // alert(tipo);
@@ -142,6 +149,10 @@
                 
         }); //fin document.ready
 
+        function mayus(e) {
+            e.value = e.value.toUpperCase();
+        }
+
         function funnewmdlo(idt, idm){
             // alert(idm);            
             if(idm == ''){
@@ -263,42 +274,41 @@
                 @enderror
                 
                 <div class="input-group" style="padding:5px">
-                    <label for="nserial" class="col-sm-4">Mac</label>
-                    <input type="text" name="mac_invequipo" id="mac_invequipo" class="form-control col" placeholder="MAC Del Equipo" >
+                    <label for="mac_invequipo" class="col-sm-4">Mac</label>
+                    <input type="text" name="mac_invequipo" id="mac_invequipo" class="form-control col"maxlength="17" placeholder="MAC Del Equipo"  onkeyup="mayus(this);">
                 </div>
                 @error('mac_invequipo')
                     <div class="col text-danger">*Este campo es obligatorio.</div>
                 @enderror
                 <div class="input-group" style="padding:5px">
-                    <label for="nserial" class="col-sm-4">IP</label>
-                    <input type="text" name="ip_invequipo" id="ip_invequipo" class="form-control col" placeholder="IP Del Equipo" >
+                    <label for="ip_invequipo" class="col-sm-4">IP</label>
+                    <input type="text" name="ip_invequipo" id="ip_invequipo" class="form-control col nip" maxlength="13" placeholder="IP Del Equipo" >
                 </div>
                 @error('ip_invequipo')
                     <div class="col text-danger">*Este campo es obligatorio.</div>
                 @enderror
 
                 <div class="input-group" style="padding:5px">
-                    <label for="fecha_invequipo" class="col-sm-4">Fecha</label>
-                    <div class="col" style="border: 1px solid silver; border-radius:5"><?php echo date("d-m-Y"); ?></div>
-                    <input type="hidden" name="fecha_invequipo" id="fecha_invequipo" class="form-control col" placeholder="Fecha de inventario" value="<?php echo date("Y-m-d"); ?>" >
+                    <label for="fecha_invequipo" class="col-sm-4">Fecha</label>                    
+                    <input type="date" name="fecha_invequipo" id="fecha_invequipo" class="form-control col" placeholder="Fecha de inventario" value="<?php echo date("Y-m-d"); ?>" >
                 </div>
                 <div class="input-group" style="padding:5px">
                     <label for="nserial" class="col-sm-4">N° Serial</label>
-                    <input type="text" name="nserial" id="nserial" class="form-control col" placeholder="Serial Del Equipo" >
+                    <input type="text" name="nserial" id="nserial" class="form-control col" maxlength="50" placeholder="Serial Del Equipo" >
                 </div>
                 @error('nserial')
                     <div class="col text-danger">*Este campo es obligatorio.</div>
                 @enderror
                 <div class="input-group" style="padding:5px">
                     <label for="bien_nacional" class="col-sm-4">Bien Nacional</label>
-                    <input type="text" name="bien_nacional" id="bien_nacional" class="form-control col" placeholder="Bien Nacional" >
+                    <input type="text" name="bien_nacional" id="bien_nacional" class="form-control col nbn" maxlength="10" placeholder="Bien Nacional" >
                 </div>
                 @error('bien_nacional')
                     <div class="col text-danger">*Este campo es obligatorio.</div>
                 @enderror
                 <div class="input-group" style="padding:5px">
                     <label for="stock_invequipo" class="col-sm-4">Stock / Cantidad</label>
-                    <input type="text" name="stock_invequipo" id="stock_invequipo" class="form-control col" placeholder="Stock" >
+                    <input type="text" name="stock_invequipo" id="stock_invequipo" class="form-control col numeros" maxlength="8" placeholder="Stock" >
                 </div>
                 @error('stock_invequipo')
                     <div class="col text-danger">*Este campo es obligatorio.</div>

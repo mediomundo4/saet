@@ -75,4 +75,5 @@ Route::controller(TblInventariosController::class)->group(function(){
 Route::controller(TblAsignacionesController::class)->group(function(){
     Route::get('/asignacion', 'index');
     Route::get('/asignacion/buscarfun', 'buscarfun');
+    Route::get('/asignacion/buscarequipo', 'buscarinvequipo');
 });

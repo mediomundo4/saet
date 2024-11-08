@@ -411,13 +411,9 @@
                             </div>
                         </form>
                     </div>
-                
                 </div>
             </div>
         </div>
         <!-- Fin Modal Modelo-->
-
     </center>
-   
-    
 @endsection

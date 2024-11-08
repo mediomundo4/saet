@@ -136,5 +136,4 @@
         </form>
       </div>
     </center>
-    no  quieres ser esa mujer ella se fue a un avismo 
 @endsection

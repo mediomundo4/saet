@@ -47,6 +47,18 @@ class TblAsignacionesController extends Controller
         ->get();
         echo json_encode($funcionario);
     }
+
+    public function buscarinvequipo(Request $request){
+        $inventarios = DB::table('tbl_inventarios_equipos')
+        ->leftjoin('tbl_procesadores', 'tbl_inventarios_equipos.id_procesador', 'tbl_procesadores.id_procesador')
+        ->leftjoin('tbl_unidades_discos', 'tbl_inventarios_equipos.id_unidad_disco', 'tbl_unidades_discos.id_unidad_disco')
+        ->leftjoin('tbl_sistemas_operativos', 'tbl_inventarios_equipos.id_sistema_operativo', 'tbl_sistemas_operativos.id_sistema_operativo')
+        ->join('tbl_modelos', 'tbl_inventarios_equipos.id_modelo', 'tbl_modelos.id_modelo')
+        ->join('tbl_marcas', 'tbl_modelos.id_marca', 'tbl_marcas.id_marca')
+        ->join('tbl_tipos_equipos', 'tbl_modelos.id_tipo_equipo', 'tbl_tipos_equipos.id_tipo_equipo')
+        ->get();
+        echo json_encode($inventarios);
+    }
     /**
      * Show the form for creating a new resource.
      */

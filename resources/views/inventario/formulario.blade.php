@@ -176,13 +176,7 @@
             <script>
                 swal("","{{session('error')}}","error");
             </script>
-        @endif
-        
-        @if (session('success'))
-            <script>
-            swal("","{{session('success')}}","success");
-            </script>
-        @endif
+        @endif     
         
         <h2>Formulario - Inventario de Equipos</h2>
         <br>
@@ -199,7 +193,7 @@
                     </select>
                 </div>
                 @error('id_tipo_equipo')
-                    <div class="text-danger">*Este campo es obligatorio.</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror                       
                 <div class="input-group" style="padding:5px">
                     <label for="id_marca" class="col-sm-4">Marca</label>
@@ -216,7 +210,7 @@
                     <span class="btn btn-success col" id="btn_newmdlo" style="max-width: 40px; border-radius:18px" data-toggle="ModalModelo" data-target="#ModalModelo" title="Registrar nuevo Modelo"><i class="fa-solid fa-plus-circle" style="font-size: 25px; display:flex; text-align:center; justify-content:center"></i></span>
                 </div>
                 @error('id_modelo')
-                    <div class="text-danger">*Este campo es obligatorio.</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group frm_oculto" style="padding:5px" >
                     <label for="id_procesador" class="col-sm-4">Procesador</label>
@@ -229,7 +223,7 @@
                     <span class="btn btn-success col" id="btn_newcpu" style="max-width: 40px; border-radius:18px" data-toggle="modal" data-target="#ModalCpu" title="Registrar nuevo procesador"><i class="fa-solid fa-plus-circle" style="font-size: 25px; display:flex; text-align:center; justify-content:center"></i></span>
                 </div>
                 @error('id_procesador')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group frm_oculto" style="padding:5px" >
                     <label for="" class="col-sm-4">Memoria RAM</label>
@@ -245,7 +239,7 @@
                     </select>
                 </div>
                 @error('memoria')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group frm_oculto" style="padding:5px">
                     <label for="id_unidad_disco" class="col-sm-4">Disco Duro</label>
@@ -258,7 +252,7 @@
                     <span class="btn btn-success col" id="btn_newcpu" style="max-width: 40px; border-radius:18px" data-toggle="modal" data-target="#ModalHDisk"><i class="fa-solid fa-plus-circle" style="font-size: 25px; display:flex; text-align:center; justify-content:center"></i></span>
                 </div>                        
                 @error('id_unidad_disco')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group frm_oculto" style="padding:5px">
                     <label for="id_sistema_operativo" class="col-sm-4">Sistema Operativo</label>
@@ -270,7 +264,7 @@
                     </select>
                 </div>
                 @error('id_sistema_operativo')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 
                 <div class="input-group" style="padding:5px">
@@ -278,14 +272,15 @@
                     <input type="text" name="mac_invequipo" id="mac_invequipo" class="form-control col"maxlength="17" placeholder="MAC Del Equipo"  onkeyup="mayus(this);">
                 </div>
                 @error('mac_invequipo')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
-                @enderror
+                    <div class="col text-danger">{{ $message }}</div>
+                    
+                @enderror                
                 <div class="input-group" style="padding:5px">
                     <label for="ip_invequipo" class="col-sm-4">IP</label>
                     <input type="text" name="ip_invequipo" id="ip_invequipo" class="form-control col nip" maxlength="13" placeholder="IP Del Equipo" >
                 </div>
                 @error('ip_invequipo')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
 
                 <div class="input-group" style="padding:5px">
@@ -297,21 +292,21 @@
                     <input type="text" name="nserial" id="nserial" class="form-control col" maxlength="50" placeholder="Serial Del Equipo" >
                 </div>
                 @error('nserial')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group" style="padding:5px">
                     <label for="bien_nacional" class="col-sm-4">Bien Nacional</label>
                     <input type="text" name="bien_nacional" id="bien_nacional" class="form-control col nbn" maxlength="10" placeholder="Bien Nacional" >
                 </div>
                 @error('bien_nacional')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group" style="padding:5px">
                     <label for="stock_invequipo" class="col-sm-4">Stock / Cantidad</label>
                     <input type="text" name="stock_invequipo" id="stock_invequipo" class="form-control col numeros" maxlength="8" placeholder="Stock" >
                 </div>
                 @error('stock_invequipo')
-                    <div class="col text-danger">*Este campo es obligatorio.</div>
+                    <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 <div style="padding-top:10px">
                     <center>

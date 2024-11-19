@@ -5,6 +5,8 @@ use App\Http\Controllers\TblUsuariosController;
 use App\Http\Controllers\TblFuncionariosController;
 use App\Http\Controllers\TblInventariosController;
 use App\Http\Controllers\TblAsignacionesController;
+use App\Http\Controllers\ReportesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +65,10 @@ Route::controller(TblFuncionariosController::class)->group(function(){
 
 Route::controller(TblInventariosController::class)->group(function(){
     Route::get('/inventario', 'index');
+    Route::get('/inventario/portipo', 'indexptipo');
     Route::get('/inventario/listar', 'edit');
+    Route::get('/inventario/listarptipo', 'editptipo');
+
     Route::post('/inventario/create', 'store');
     Route::get('/inventario/buscarmdlo', 'buscar_modelo');
     Route::get('/inventario/buscarmrca', 'buscar_marca');
@@ -76,4 +81,16 @@ Route::controller(TblAsignacionesController::class)->group(function(){
     Route::get('/asignacion', 'index');
     Route::get('/asignacion/buscarfun', 'buscarfun');
     Route::get('/asignacion/buscarequipo', 'buscarinvequipo');
+    Route::post('/asignacion/create', 'store');
+    Route::get('/asignacion/listar', 'edit');
+});
+
+Route::controller(ReportesController::class)->group(function(){
+    Route::get('/reporte/pordpto', 'reporte_por_dependencia');
+    Route::get('/reporte/pordpndnc', 'reporte_por_departamento');    
+    Route::get('/reporte/porrngfecha', function () { return view('reportes.form_prangof'); });
+    Route::post('/reporte/generar_rpordpto', 'generar_reprte_pordepartamento');
+    Route::post('/reporte/generar_rpordpdnc', 'generar_reprte_pordependencia');
+    Route::post('/reporte/generar_rporrangofecha', 'generar_reprte_por_rango_fecha');
+    Route::get('/reporte/graficoprostatu', 'grafico_por_estatus');
 });

@@ -33,7 +33,7 @@
       <span class="nav fa-solid fa-bars"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex;  aling-items:right; justify-content:right">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="/principal"><i class="fa fa-home"></i> principal <span class="sr-only">(current)</span></a>
@@ -55,6 +55,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/inventario"><i class="fa fa-plus-circle"></i> Nuevo</a>
             <a class="dropdown-item" href="/inventario/listar"><i class="fa fa-search"></i> Consultar</a>         
+            <a class="dropdown-item" href="/inventario/portipo"><i class="fa fa-search"></i> Consultar Tipo Equipo</a>         
           </div>
         </li>
         <li class="nav-item dropdown active">
@@ -63,7 +64,25 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="asignacion">
             <a class="dropdown-item" href="/asignacion"><i class="fa fa-plus-circle"></i> Nueva</a>
-            <a class="dropdown-item" href="#"><i class="fa fa-search"></i> Consultar</a>         
+            <a class="dropdown-item" href="/asignacion/listar"><i class="fa fa-search"></i> Consultar</a>         
+          </div>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="asignacion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-print"></i> Reportes
+          </a>
+          <div class="dropdown-menu" aria-labelledby="asignacion">
+            <a class="dropdown-item" href="/reporte/pordpndnc"><i class="fa fa-file-text"></i> Por Departamento</a>
+            <a class="dropdown-item" href="/reporte/pordpto"><i class="fa fa-file-text"></i> Por Dependencia</a>         
+            <a class="dropdown-item" href="/reporte/porrngfecha"><i class="fa fa-file-text"></i> Por Rango de fechas</a>         
+          </div>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="asignacion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-pie-chart"></i> Graficos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="asignacion">
+            <a class="dropdown-item" href="/reporte/graficoprostatu"><i class="fa-solid fa-pie-chart"></i> Por Estatus</a>                    
           </div>
         </li>
         @if(session('perfil')== 1)

@@ -28,6 +28,11 @@ class TblInventariosController extends Controller
         return view('inventario.formulario', compact('marcas', 'modelos', 'procesadores', 'unidades_discos', 'tipos', 'sistemas'));
     }
 
+    public function indexptipo(Request $request){
+        $tipos = tbl_tipos_equipos::all();
+        return view('inventario.consulta_portipo', compact('tipos'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -45,7 +50,7 @@ class TblInventariosController extends Controller
         $inventario = new tbl_inventarios();
         //dd($request->fecha_invequipo);
         $id_tipo = $request->id_tipo_equipo;
-        if($id_tipo == 1 and $id_tipo == 2 and $id_tipo == 12){
+        if($id_tipo == 1 or $id_tipo == 2 or $id_tipo == 12){
             $request->validate([
                 'id_tipo_equipo' => 'required',
                 'id_marca' => 'required',
@@ -71,8 +76,10 @@ class TblInventariosController extends Controller
             $inventario->nserial = $request->nserial;
             $inventario->bien_nacional = $request->bien_nacional;
             $inventario->stock_invequipo = $request->stock_invequipo;
-            $inventario->mac_invequipo = $request->mac_invequipo;
-            $inventario->ip_invequipo = $request->ip_invequipo;
+            if($request->mac_invequipo != '' and $request->ip_invequipo != ''){
+                $inventario->mac_invequipo = $request->mac_invequipo;
+                $inventario->ip_invequipo = $request->ip_invequipo;
+            }
         }else{
             $request->validate([
                 'id_tipo_equipo' => 'required',
@@ -186,6 +193,21 @@ class TblInventariosController extends Controller
         ->join('tbl_tipos_equipos', 'tbl_modelos.id_tipo_equipo', 'tbl_tipos_equipos.id_tipo_equipo')
         ->get();
         return view('inventario.listar', compact('inventarios'));
+    }
+
+    public function editptipo(tbl_inventarios $tbl_inventarios, Request $request)
+    {
+        $id_tipo = $request->id_tipo_equipo;
+        $inventarios = DB::table('tbl_inventarios_equipos')
+        ->leftjoin('tbl_procesadores', 'tbl_inventarios_equipos.id_procesador', 'tbl_procesadores.id_procesador')
+        ->leftjoin('tbl_unidades_discos', 'tbl_inventarios_equipos.id_unidad_disco', 'tbl_unidades_discos.id_unidad_disco')
+        ->leftjoin('tbl_sistemas_operativos', 'tbl_inventarios_equipos.id_sistema_operativo', 'tbl_sistemas_operativos.id_sistema_operativo')
+        ->join('tbl_modelos', 'tbl_inventarios_equipos.id_modelo', 'tbl_modelos.id_modelo')
+        ->join('tbl_marcas', 'tbl_modelos.id_marca', 'tbl_marcas.id_marca')
+        ->join('tbl_tipos_equipos', 'tbl_modelos.id_tipo_equipo', 'tbl_tipos_equipos.id_tipo_equipo')
+        ->where('tbl_modelos.id_tipo_equipo', '=', $id_tipo)
+        ->get();
+        return view('inventario.listar2', compact('inventarios'));
     }
 
     public function buscar_modelo(tbl_modelos $tbl_inventarios, Request $request)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\tbl_asignaciones;
 use App\Models\tbl_funcionarios;
 use App\Models\tbl_estatus_asignaciones;
+use App\Models\tbl_inventarios;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -62,6 +63,16 @@ class TblAsignacionesController extends Controller
         ->get();
         echo json_encode($inventarios);
     }
+
+    public function buscarstock(Request $request){
+        $id = $request->id_invequipo;
+        $inventarios = DB::table('tbl_inventarios_equipos')
+        ->where('id_invequipo', '=', $id)
+        ->first();
+        $stock = $inventarios->stock_invequipo;
+        $cant = number_format($stock,0,0,1);
+        echo json_encode($cant);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -86,16 +97,22 @@ class TblAsignacionesController extends Controller
             'usuario' => 'required',
         ]);
         
-
         $asignasiones->id_funcionario = $request->id_funcionario;
-        $asignasiones->id_invequipo = $request->id_invequipo;
+        $idinvequipo = $request->id_invequipo;
+        $asignasiones->id_invequipo = $idinvequipo;
         $asignasiones->fecha_asignacion = $request->fecha_asignacion;
-        $asignasiones->cantidad_asignacion = $request->cantidad_asignacion;
+        $cantidad = $request->cantidad_asignacion;
+        $asignasiones->cantidad_asignacion = $cantidad;
         $asignasiones->id_estatu_asignacion = $request->id_estatu_asignacion;
         $asignasiones->usuario = $request->usuario;
-        
         $asignasiones->save();
-        
+
+        $inventario = new tbl_inventarios();
+        $invequipo = $inventario->find($idinvequipo);
+        $stockinvequipo = $invequipo->stock_invequipo;
+        $totalstock = number_format($stockinvequipo,0,0,1) - number_format($cantidad,0,0,1);
+        $invequipo->stock_invequipo = $totalstock;
+        $invequipo->save();        
         return back()->with('success', 'Asignacion registrada correctamente.');
     }
 
@@ -104,7 +121,7 @@ class TblAsignacionesController extends Controller
      */
     public function show(tbl_asignaciones $tbl_asignaciones)
     {
-        //
+        
     }
 
     /**
@@ -127,7 +144,17 @@ class TblAsignacionesController extends Controller
         ->join('tbl_tipos_equipos', 'tbl_modelos.id_tipo_equipo', 'tbl_tipos_equipos.id_tipo_equipo')
         ->get();
 
-        return view('asignacion.listar', compact('asignaciones'));
+        $estatus = tbl_estatus_asignaciones::all();
+
+        return view('asignacion.listar', compact('asignaciones', 'estatus'));
+    }
+
+    public function actualizarstatu(Request $request){
+        $id = $request->id_asignacion;
+        $asignasiones = tbl_asignaciones::find($id);
+        $asignasiones->id_estatu_asignacion = $request->id_estatu_asignacion;
+        $asignasiones->save();
+        return back()->with('success', 'Estatus actualizado correctamente.');
     }
 
     /**

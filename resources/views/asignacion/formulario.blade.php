@@ -101,6 +101,27 @@
             $("#btneq").click(function(){
                 $("#ModalEquipo").modal('show');
             });
+
+            $("#cantidad_asignacion").blur(function(){
+                var idinveq = $("#id_invequipo").val();
+                var cantidad = $(this).val();
+                var datos = {
+                    _token: $("input[name='_token']").val(),
+                    id_invequipo: idinveq
+                };
+                $.ajax({
+                    url: '/asignacion/buscarstock',
+                    method: 'get',
+                    dataType:'json',
+                    data: datos,
+                }).done(function(data){ //console.log(data);
+                    var stock = data;
+                    if(cantidad > stock){
+                        swal('','La cantidad de asignacion no debe ser mayor de '+data, 'error');
+                        $("#cantidad_asignacion").val('');
+                    }
+                });
+            });
         });//fin  .ready
     </script>
     

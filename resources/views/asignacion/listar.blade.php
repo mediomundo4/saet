@@ -33,6 +33,11 @@
                 }
             }); //cambia la el idioma a español
         })
+
+        function modificarestatu(id){
+            $("#id_asignacion").val(id);
+            $("#estatusModal").modal('show');
+        }
     </script>
     <div>
         <style>
@@ -59,6 +64,7 @@
                     <th style="text-align:center">Cantidad</th>
                     <th style="text-align:center">Estatus</th>
                     <th style="text-align:center">Usuario</th>
+                    <th style="text-align:center">Accion</th>
                 </thead>
                 <tbody>
                     @foreach($asignaciones as $asignacion)
@@ -80,12 +86,54 @@
                             <td style="text-align:center">{{ $asignacion->cantidad_asignacion }}</td>
                             <td style="text-align:center">{{ $asignacion->estatu_asignacion }}</td>
                             <td style="text-align:center">{{ $asignacion->usuario }}</td>                                               
+                            <td style="text-align:center">
+                                @if($asignacion->estatu_asignacion == 3)
+                                    <span class="btn btn-success" title="Modificar estatus asignacion" onclick="modificarestatu({{$asignacion->id_asignacion}})"><i class="fa-solid fa-refresh"></i></span>
+                                @endif
+                            </td>                                               
                         </tr>
                     @endforeach
                 </tbody>
 
             </table>
         </div>
+    </div>
+
+    <!-- Modal MODIFICAR ESTATUS-->
+    <div class="modal fade" id="estatusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="/asignacion/modificarstatu" method="post">
+                @csrf
+                <div class="input-group">
+                    <label for="" class="col-4">Estatus Asignacion</label>
+                    <select name="id_estatu_asignacion" id="id_estatu_asignacion" class="form-control col">
+                        <option value="">Seleccione...</option>
+                        @foreach($estatus as $estatu)
+                            <option value="{{ $estatu->id_estatu_asignacion }}">{{ $estatu->estatu_asignacion }}</option>
+                        @endforeach
+                        <input type="hidden" name="id_asignacion" id="id_asignacion">
+                    </select>
+                </div>
+                <div>
+                    <center>
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-o"></i> Actualizar</button>
+                    </center>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+        </div>
+    </div>
     </div>
     </center>
 @endsection

@@ -83,6 +83,8 @@ Route::controller(TblAsignacionesController::class)->group(function(){
     Route::get('/asignacion/buscarequipo', 'buscarinvequipo');
     Route::post('/asignacion/create', 'store');
     Route::get('/asignacion/listar', 'edit');
+    Route::get('/asignacion/buscarstock', 'buscarstock');
+    Route::post('/asignacion/modificarstatu', 'actualizarstatu');
 });
 
 Route::controller(ReportesController::class)->group(function(){

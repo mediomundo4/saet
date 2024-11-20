@@ -3,6 +3,9 @@
 @section('contenido')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <center>
+    <br>
+    <h2>Grafico - Por Estatus</h2>
+    <br>
     <div style="width:600px">
       <canvas id="myChart"></canvas>
     </div>
@@ -19,7 +22,7 @@
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     data: {
       labels: ['En Espera', 'En Proceso', 'Procesado'],
       datasets: [{

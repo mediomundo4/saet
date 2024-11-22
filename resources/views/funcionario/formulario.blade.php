@@ -117,6 +117,24 @@
                     var userdom = $(this).val();
                     $("#correo_inst").val(userdom+"@intt.gob.ve");
                 });
+
+                $("#cedulafun").blur(function(){
+                    var datos = {
+                        _token: $("input[name='_token']").val(),
+                        cedulafun: $(this).val()                        
+                    };
+                    $.ajax({
+                        url: '/funcionario/buscar',
+                        method: 'get',
+                        data: datos,
+                        dataType: 'json'
+                    }).done(function(data){
+                        if(data.estado == 'encontrado'){
+                            $(this).val('');
+                            swal('', data.msg, 'error');
+                        }
+                    });
+                });
             });///fin .ready
         </script>
         <br>

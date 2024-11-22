@@ -92,7 +92,6 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="asignacion">
               <a class="dropdown-item" href="/usuario"><i class="fa fa-plus-circle"></i> Nuevo</a>
-              <a class="dropdown-item" href="/usuario/listar"><i class="fa fa-search"></i> Consultar</a>         
             </div>
           </li>
         @endif       

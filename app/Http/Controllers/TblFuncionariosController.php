@@ -147,8 +147,15 @@ class TblFuncionariosController extends Controller
     {
         $funcionario = DB::table('tbl_funcionarios')
         ->where('cedulafun', '=', $request->get('cedulafun'))
-        ->get();
-        echo json_encode($funcionario);
+        ->first();
+        // dd($funcionario);
+        if(empty($funcionario)){
+            $retorna['estado'] = 'no encontrado';
+        }else{
+            $retorna['estado'] = 'encontrado';
+            $retorna['msg'] = 'Cedula ya registrada en el sistema.';
+        }     
+        echo json_encode($retorna);
     }
 
     public function buscar_dependencia(Request $request){

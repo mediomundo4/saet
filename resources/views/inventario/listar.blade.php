@@ -9,28 +9,30 @@
     @endif
 
     <script>
-        $('#inventario').DataTable({    
-            language: {
-                "decimal": "",
-                "emptyTable": "No hay información",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Entradas",
-                "loadingRecords": "Cargando...",
-                "processing": "Procesando...",
-                "search": "Buscar:",
-                "zeroRecords": "Sin resultados encontrados",
-                "paginate": {
-                    "first": "Primero",
-                    "last": "Ultimo",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
+        $(document).ready(function(){
+            $('#datostbl').DataTable({    
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
                 }
-            }
-        }); //cambia la el idioma a español
+            }); //cambia la el idioma a español
+        });
     </script>
     <div>
         <style>
@@ -43,7 +45,7 @@
         <h2>Listado - Inventarios</h2><span style=""></span>
         <br><br>
         <div style="align-item:center; max-width:600px; display:table;">
-        <table id="inventario" class="table table-bordered table-striped">
+        <table id="datostbl" class="table table-bordered table-striped">
             <thead class="table-dark">
                 <th>Tipo de equipo</th>
                 <th>Marca y Modelo</th>

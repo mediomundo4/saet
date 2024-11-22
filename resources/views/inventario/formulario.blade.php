@@ -20,11 +20,11 @@
             $("#id_tipo_equipo").change(function(){                
                 var tipo = $(this).val();
                 // alert(tipo);
-                if (tipo != 1 && tipo != 2 && tipo != 12 ){
+                if (tipo != 1 && tipo != 2 && tipo != 12){
                     $(".frm_oculto").hide(1700);
                 } else {
                     $(".frm_oculto").show(1700);
-                }
+                }                
 
                 var datos = {
                     id_tipo_equipo: tipo,

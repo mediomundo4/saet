@@ -20,11 +20,18 @@
             $("#id_tipo_equipo").change(function(){                
                 var tipo = $(this).val();
                 // alert(tipo);
-                if (tipo != 1 && tipo != 2 && tipo != 12){
+                if (tipo != 1 && tipo != 2 && tipo != 12){ //cpu, memoria, disco duro, sistema operativo
                     $(".frm_oculto").hide(1700);
                 } else {
                     $(".frm_oculto").show(1700);
-                }                
+                }
+                
+                var tequipo = $(this).val();
+                if(tequipo != 1 && tequipo != 2 && tequipo != 3 && tequipo != 4 && tequipo != 9 && tequipo != 12){ //mac e IP
+                    $(".macip_oculto").hide(1700);
+                }else{
+                    $(".macip_oculto").show(1700);
+                }
 
                 var datos = {
                     id_tipo_equipo: tipo,
@@ -267,7 +274,7 @@
                     <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 
-                <div class="input-group" style="padding:5px">
+                <div class="input-group macip_oculto" style="padding:5px">
                     <label for="mac_invequipo" class="col-sm-4">Mac</label>
                     <input type="text" name="mac_invequipo" id="mac_invequipo" class="form-control col"maxlength="17" placeholder="MAC Del Equipo"  onkeyup="mayus(this);">
                 </div>
@@ -275,7 +282,7 @@
                     <div class="col text-danger">{{ $message }}</div>
                     
                 @enderror                
-                <div class="input-group" style="padding:5px">
+                <div class="input-group macip_oculto" style="padding:5px">
                     <label for="ip_invequipo" class="col-sm-4">IP</label>
                     <input type="text" name="ip_invequipo" id="ip_invequipo" class="form-control col nip" maxlength="13" placeholder="IP Del Equipo" >
                 </div>

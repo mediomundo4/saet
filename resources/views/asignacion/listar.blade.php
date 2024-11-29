@@ -87,9 +87,7 @@
                             <td style="text-align:center">{{ $asignacion->estatu_asignacion }}</td>
                             <td style="text-align:center">{{ $asignacion->usuario }}</td>                                               
                             <td style="text-align:center">
-                                @if($asignacion->estatu_asignacion == 3)
                                     <span class="btn btn-success" title="Modificar estatus asignacion" onclick="modificarestatu({{$asignacion->id_asignacion}})"><i class="fa-solid fa-refresh"></i></span>
-                                @endif
                             </td>                                               
                         </tr>
                     @endforeach

@@ -25,7 +25,7 @@
         exit;
     @endif  
     
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div>
       <a class="navbar-brand" href="#" style="padding-left:15px; padding-right:10px">SAET</a>
     </div>

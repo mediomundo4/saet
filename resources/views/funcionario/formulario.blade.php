@@ -186,7 +186,6 @@
                             <option value="{{$dependencia->id_dependencia}}">{{$dependencia->dependencia}}</option>
                         @endforeach -->
                     </select>   
-                    <span class="btn btn-success col" id="btn_newdepen" style="max-width: 40px; border-radius:18px" title="Registrar nuevo Modelo"><i class="fa-solid fa-plus-circle" style="font-size: 25px; display:flex; text-align:center; justify-content:center"></i></span>
                 </div>
                 @error('id_dependencia')
                     <div class="col text-danger">{{ $message }}</div>
@@ -197,7 +196,6 @@
                     <select name="id_departamento" id="id_departamento" class="form-control col">
                         <option value="">Seleccione...</option>
                     </select>   
-                    <span class="btn btn-success col" id="btn_newdpto" style="max-width: 40px; border-radius:18px"><i class="fa-solid fa-plus-circle" style="font-size: 25px; display:flex; text-align:center; justify-content:center"></i></span>
                 </div>
                 @error('id_departamento')
                     <div class="col text-danger">{{ $message }}</div>

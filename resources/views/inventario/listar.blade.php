@@ -46,18 +46,18 @@
         <br><br>
         <div style="align-item:center; max-width:600px; display:table;">
         <table id="datostbl" class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <th>Tipo de equipo</th>
-                <th>Marca y Modelo</th>
-                <th>Procesador</th>
-                <th>Memoria Ram</th>
-                <th>Disco Duro</th>
-                <th>Sistema Operativo</th>
-                <th>Fecha Inventario</th>
-                <th>N serial.</th>
-                <th>Bien Nacional</th>
-                <th>MAC</th>
-                <th>IP</th>
+            <thead class="bg-primary">
+                <th style="color:#fff">Tipo de equipo</th>
+                <th style="color:#fff">Marca y Modelo</th>
+                <th style="color:#fff">Procesador</th>
+                <th style="color:#fff">Memoria Ram</th>
+                <th style="color:#fff">Disco Duro</th>
+                <th style="color:#fff">Sistema Operativo</th>
+                <th style="color:#fff">Fecha Inventario</th>
+                <th style="color:#fff">N serial.</th>
+                <th style="color:#fff">Bien Nacional</th>
+                <th style="color:#fff">MAC</th>
+                <th style="color:#fff">IP</th>
             </thead>
             <tboddy>
                 @foreach($inventarios as $inventario)

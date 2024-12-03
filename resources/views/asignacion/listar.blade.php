@@ -32,11 +32,19 @@
                     }
                 }
             }); //cambia la el idioma a español
+            
         })
 
         function modificarestatu(id){
             $("#id_asignacion").val(id);
             $("#estatusModal").modal('show');
+        }
+
+        function abrirmemo(ruta){
+            if(ruta != ''){
+                var url = '../../archivos/asignacion/';
+                window.open(url+ruta);
+            }
         }
     </script>
     <div>
@@ -51,20 +59,19 @@
         <br>
         <div style="align-item:center; max-width:600px; display:table;">           
             <table id="datostbl" class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <th style="text-align:center">Datos Funcionario</th>
-                    <th style="text-align:center">Piso / Dpto / Dependencia</th>
-                    <td style="text-align:center">Tipo equipo</td>
-                    <td style="text-align:center">Modelo</td>
-                    <td style="text-align:center">Procesador</td>
-                    <td style="text-align:center">Memoria Ram</td>
-                    <td style="text-align:center">Disco Duro</td>
-                    <td style="text-align:center">Sistema Operativo</td>
-                    <th style="text-align:center">Fecha Asignacion</th>
-                    <th style="text-align:center">Cantidad</th>
-                    <th style="text-align:center">Estatus</th>
-                    <th style="text-align:center">Usuario</th>
-                    <th style="text-align:center">Accion</th>
+                <thead class="bg-primary">
+                    <th style="text-align:center; color:#fff">Datos Funcionario</th>
+                    <th style="text-align:center; color:#fff">Piso / Dpto / Dependencia</th>
+                    <td style="text-align:center; color:#fff">Tipo equipo</td>
+                    <td style="text-align:center; color:#fff">Modelo</td>
+                    <td style="text-align:center; color:#fff">Procesador</td>
+                    <td style="text-align:center; color:#fff">Memoria Ram</td>
+                    <td style="text-align:center; color:#fff">Disco Duro</td>
+                    <td style="text-align:center; color:#fff">Sistema Operativo</td>
+                    <th style="text-align:center; color:#fff">Fecha Asignacion</th>
+                    <th style="text-align:center; color:#fff">Estatus</th>
+                    <th style="text-align:center; color:#fff">Usuario</th>
+                    <th style="text-align:center; color:#fff">Accion</th>
                 </thead>
                 <tbody>
                     @foreach($asignaciones as $asignacion)
@@ -83,11 +90,13 @@
                             <td style="text-align:center">{{ $asignacion->unidad_disco }}</td>
                             <td style="text-align:center">{{ $asignacion->sistema_operativo }}</td>
                             <td style="text-align:center">{{ $asignacion->fecha_asignacion }}</td>
-                            <td style="text-align:center">{{ $asignacion->cantidad_asignacion }}</td>
                             <td style="text-align:center">{{ $asignacion->estatu_asignacion }}</td>
                             <td style="text-align:center">{{ $asignacion->usuario }}</td>                                               
                             <td style="text-align:center">
-                                    <span class="btn btn-success" title="Modificar estatus asignacion" onclick="modificarestatu({{$asignacion->id_asignacion}})"><i class="fa-solid fa-refresh"></i></span>
+                                <span class="btn btn-success " title="Modificar estatus asignacion" onclick="modificarestatu({{$asignacion->id_asignacion}})"><i style="font-size:28px" class="fa-solid fa-refresh"></i></span>                                    
+                                @if($asignacion->ruta_memo != '')
+                                    <span class="btn btn-danger" onclick="abrirmemo('{{$asignacion->ruta_memo}}')"><i class="fa fa-file-pdf-o" style="font-size:28px"></i></span>
+                                @endif
                             </td>                                               
                         </tr>
                     @endforeach
@@ -102,7 +111,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Cambiar Estatus Asignación</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>

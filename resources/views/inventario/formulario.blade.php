@@ -34,6 +34,7 @@
                 }
 
                 var datos = {
+                    _token: $("input[name='_token']").val(),
                     id_tipo_equipo: tipo,
                 };
 
@@ -56,6 +57,7 @@
                 var tipo = $("#id_tipo_equipo").val();
                 var marca = $(this).val();
                 var datos = {
+                    _token: $("input[name='_token']").val(),
                     id_tipo_equipo: tipo,
                     id_marca: marca
                 };
@@ -276,45 +278,30 @@
                 
                 <div class="input-group macip_oculto" style="padding:5px">
                     <label for="mac_invequipo" class="col-sm-4">Mac</label>
-                    <input type="text" name="mac_invequipo" id="mac_invequipo" class="form-control col"maxlength="17" placeholder="MAC Del Equipo"  onkeyup="mayus(this);">
-                </div>
-                @error('mac_invequipo')
-                    <div class="col text-danger">{{ $message }}</div>
-                    
-                @enderror                
+                    <input type="text" name="mac_invequipo" id="mac_invequipo" class="form-control col"maxlength="17" placeholder="MAC Del Equipo"  onkeyup="mayus(this);" value="{{old('mac_invequipo')}}">
+                </div>                               
                 <div class="input-group macip_oculto" style="padding:5px">
                     <label for="ip_invequipo" class="col-sm-4">IP</label>
-                    <input type="text" name="ip_invequipo" id="ip_invequipo" class="form-control col nip" maxlength="13" placeholder="IP Del Equipo" >
-                </div>
-                @error('ip_invequipo')
-                    <div class="col text-danger">{{ $message }}</div>
-                @enderror
-
+                    <input type="text" name="ip_invequipo" id="ip_invequipo" class="form-control col nip" maxlength="13" placeholder="IP Del Equipo" value="{{old('ip_invequipo')}}">
+                </div>               
                 <div class="input-group" style="padding:5px">
                     <label for="fecha_invequipo" class="col-sm-4">Fecha</label>                    
                     <input type="date" name="fecha_invequipo" id="fecha_invequipo" class="form-control col" placeholder="Fecha de inventario" value="<?php echo date("Y-m-d"); ?>" >
                 </div>
                 <div class="input-group" style="padding:5px">
                     <label for="nserial" class="col-sm-4">N° Serial</label>
-                    <input type="text" name="nserial" id="nserial" class="form-control col" maxlength="50" placeholder="Serial Del Equipo" >
+                    <input type="text" name="nserial" id="nserial" class="form-control col" maxlength="50" placeholder="Serial Del Equipo" value="{{old('nserial')}}">
                 </div>
                 @error('nserial')
                     <div class="col text-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group" style="padding:5px">
                     <label for="bien_nacional" class="col-sm-4">Bien Nacional</label>
-                    <input type="text" name="bien_nacional" id="bien_nacional" class="form-control col nbn" maxlength="10" placeholder="Bien Nacional" >
+                    <input type="text" name="bien_nacional" id="bien_nacional" class="form-control col nbn" maxlength="10" placeholder="Bien Nacional" value="{{old('bien_nacional')}}">
                 </div>
                 @error('bien_nacional')
                     <div class="col text-danger">{{ $message }}</div>
-                @enderror
-                <div class="input-group" style="padding:5px">
-                    <label for="stock_invequipo" class="col-sm-4">Stock / Cantidad</label>
-                    <input type="text" name="stock_invequipo" id="stock_invequipo" class="form-control col numeros" maxlength="8" placeholder="Stock" >
-                </div>
-                @error('stock_invequipo')
-                    <div class="col text-danger">{{ $message }}</div>
-                @enderror
+                @enderror                
                 <div style="padding-top:10px">
                     <center>
                         <button type="submit" class="btn btn-success" style="width:250px; height:40px"><i class="fa fa-floppy-o">Guardar</i></button>                        

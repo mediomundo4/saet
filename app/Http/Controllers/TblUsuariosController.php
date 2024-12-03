@@ -69,8 +69,6 @@ class TblUsuariosController extends Controller
         $usuarios->id_perfil = $request->get('id_perfil');
         $usuarios->save();
         return back()->with('success', 'Usuario registrado correctamente.');
-            
-        
     }
 
     /**
@@ -107,6 +105,19 @@ class TblUsuariosController extends Controller
         $request->session()->forget('nombre_completo');
         return redirect('/');
     }
+
+    public function buscarcedula(Request $request){
+        //dd($request);
+        $usuario = DB::table('tbl_usuarios')
+        ->where('cedula', '=', $request->cedula)
+        ->first();
+        if($usuario != null){
+            $retorna['estado'] = 'encontrado';   
+            $retorna['msj'] = 'Cedula ya registrada';   
+        }
+        echo json_encode($retorna);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

@@ -17,17 +17,17 @@
       
       <div style="align-items:center; max-width:600px; display:table; min-width:250px">
           <table id="funcionarios" class="table table-bordered table-striped" >
-            <thead class="table-dark">
+            <thead class="bg-primary">
               <tr>
-                <th>Cedula</th>
-                <th>Nombre / Apellido</th>
-                <th>Telefono</th>
-                <th>Correo Personal</th>
-                <th>Correo Institucional</th>
-                <th>Piso</th>
-                <th>Departamento</th>
-                <th>Dependencia</th>
-                <th>Accion</th>
+                <th style="color:#fff">Cedula</th>
+                <th style="color:#fff">Nombre / Apellido</th>
+                <th style="color:#fff">Telefono</th>
+                <th style="color:#fff">Correo Personal</th>
+                <th style="color:#fff">Correo Institucional</th>
+                <th style="color:#fff">Piso</th>
+                <th style="color:#fff">Departamento</th>
+                <th style="color:#fff">Dependencia</th>
+                <th style="color:#fff">Accion</th>
               </tr>
             </thead>
             <tbody>

@@ -21,7 +21,28 @@
       @endif
 
       <script>
-        $("#foto").hide();
+        $(document).ready(function(){
+          $("#foto").hide();
+
+          $("#cedula").blur(function(){
+            var ci = $(this).val();
+            var datos = {
+                _token: $("input[name='_token']").val(),
+                cedula: ci
+            };
+            $.ajax({
+                url: '/usuario/buscarcedula',
+                method: 'get',
+                dataType:'json',
+                data: datos,
+            }).done(function(data){ //console.log(data);
+                if(data.estado == 'encontrado'){
+                  $("#cedula").val('');
+                  swal('', data.msj, 'error');
+                }                
+            });
+          });
+        });//fin .ready
         function explorar(){
             document.getElementById('ruta_foto').click();
             $("#nombre_arch").html("")

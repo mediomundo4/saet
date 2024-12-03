@@ -43,7 +43,8 @@
 
         
     </style>
-    
+    <img src="{{ asset(img/cintilloizq2023.png) }}" alt="">
+    <div style="text-align:right; color: #000; font-size:20px">Caracas, <?php echo date('d-m-Y'); ?></div>
     <h1>Reporte por Dependencia</h1>
     
     
@@ -59,7 +60,6 @@
                 <th style="font-size:14px">Procesador, Memoria Ram ,Disco Duro</td>
                 <th style="font-size:14px">Sistema Operativo</td>
                 <th style="font-size:14px">Fecha Asignacion</th>
-                <th style="font-size:14px">Cantidad Asignada</th>
                 <th style="font-size:14px">Estatus</th>
                 <th style="font-size:14px">Usuario</th>
         </t4ead>
@@ -76,7 +76,6 @@
                     <td style="font-size:12px; text-align:center">{{ $dependencia->procesador }} <br>{{ $dependencia->memoria }} <br>{{ $dependencia->unidad_disco }} <br></td>
                     <td style="font-size:12px; text-align:center">{{ $dependencia->sistema_operativo }}</td>
                     <td style="font-size:12px; text-align:center">{{ $dependencia->fecha_asignacion }}</td>
-                    <td style="font-size:12px; text-align:center">{{ $dependencia->cantidad_asignacion }}</td>
                     <td style="font-size:12px; text-align:center">{{ $dependencia->estatu_asignacion }}</td>
                     <td style="font-size:12px; text-align:center">{{ $dependencia->usuario }}</td>
                 </tr>

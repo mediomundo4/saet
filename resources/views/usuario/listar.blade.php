@@ -44,14 +44,14 @@
             <h2>Listado - Usuarios</h2><span style=""></span>
             <br/>
             <div style="align-item:center; max-width:600px; display:table; min-width:250px">
-                <table class="table table-bordered table-striped" id="usuarios">
-                    <thead class="table-dark">
-                        <th>Cedula</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Perfil</th>
-                        <th>Usuario</th>                                               
+                <table class="bg table-bordered table-striped" id="usuarios">
+                    <thead class="table-primary">
+                        <th style="color:#fff">Cedula</th>
+                        <th style="color:#fff">Nombre</th>
+                        <th style="color:#fff">Apellido</th>
+                        <th style="color:#fff">Correo</th>
+                        <th style="color:#fff">Perfil</th>
+                        <th style="color:#fff">Usuario</th>                                               
                     </thead>
                     <tbody>
                         @foreach($usuarios as $usuario)

@@ -88,16 +88,12 @@ class TblInventariosController extends Controller
                 'fecha_invequipo' => 'required',
                 'nserial' => 'required',
                 'bien_nacional' => 'required',
-                'stock_invequipo' => 'required',
-                'mac_invequipo' => 'required',
-                'ip_invequipo' => 'required'  
             ]); 
 
             $inventario->id_modelo = $request->id_modelo;
             $inventario->fecha_invequipo = $request->fecha_invequipo;
             $inventario->nserial = $request->nserial;
             $inventario->bien_nacional = $request->bien_nacional;
-            $inventario->stock_invequipo = $request->stock_invequipo;
             $inventario->mac_invequipo = $request->mac_invequipo;
             $inventario->ip_invequipo = $request->ip_invequipo;
         }

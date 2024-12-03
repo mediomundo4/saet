@@ -45,6 +45,7 @@ Route::controller(TblUsuariosController::class)->group(function(){
     Route::post('/usuario/create', 'store');
     Route::post('/usuario/update', 'update');
     Route::post('/usuario/clave', 'update2');
+    Route::get('/usuario/buscarcedula', 'buscarcedula');
 });
 
 Route::controller(TblFuncionariosController::class)->group(function(){
@@ -85,6 +86,8 @@ Route::controller(TblAsignacionesController::class)->group(function(){
     Route::get('/asignacion/listar', 'edit');
     Route::get('/asignacion/buscarstock', 'buscarstock');
     Route::post('/asignacion/modificarstatu', 'actualizarstatu');
+    Route::get('/asignacion/buscartipoequipo', 'buscartipoequipo');
+    Route::get('/asignacion/buscarfunporcedula', 'buscarfunporcedula');
 });
 
 Route::controller(ReportesController::class)->group(function(){

@@ -43,7 +43,7 @@
 
         
     </style>
-    <img src="{{ asset('img/cintilloizq2023.png') }}" alt="">
+    <img src="{{ asset('img/cintilloizq2023.jpg') }}" alt="">
     <div style="text-align:right; color: #000; font-size:20px">Caracas, <?php echo date('d-m-Y'); ?></div>
     <h1>Reporte por Departamento</h1>
     
